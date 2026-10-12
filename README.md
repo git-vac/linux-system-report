@@ -79,17 +79,6 @@ Tests use synthetic fixtures and command stubs. They cover section selection, mi
 
 Keep generated reports in **reports/**, which Git ignores. Reports elsewhere are not automatically ignored. Review any real report before publishing: addresses, mount paths, and service names can describe your infrastructure.
 
-## Extend it
-
-Start with the [walkthrough](docs/walkthrough.md). Possible next steps:
-
-- Add a read-only collector and its interpretation notes.
-- Compare two reports, accounting for timestamps and changing counters.
-- Build a PowerShell companion for Windows.
-- Add a machine-readable output format.
-
-This project was built with AI assistance. Read the code, run the examples, and modify it as your own understanding grows.
-
 ## References
 
 - [GNU Bash manual](https://www.gnu.org/software/bash/manual/bash.html): arrays, quoting, functions, conditionals, and command substitution.
