@@ -1,0 +1,3 @@
+NAME="Example Linux"
+VERSION="1.0 (synthetic)"
+ID=example

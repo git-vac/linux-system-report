@@ -1,0 +1,33 @@
+name: Bash checks
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    strategy:
+      matrix:
+        os: [ubuntu-22.04, ubuntu-24.04]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - name: Syntax checks
+        run: |
+          bash -n scripts/linux-system-report.sh
+          bash -n tests/run.sh
+      - name: Behavioral tests
+        run: bash tests/run.sh
+      - name: Live Linux smoke check
+        run: |
+          mkdir -p reports
+          bash scripts/linux-system-report.sh -o reports/ci-smoke.md
+          test -s reports/ci-smoke.md
+          grep -q '^Mode: \*\*Local Linux snapshot\*\*' reports/ci-smoke.md
+          grep -q '^## TCP/UDP listening sockets' reports/ci-smoke.md
